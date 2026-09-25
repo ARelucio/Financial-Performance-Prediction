@@ -1077,8 +1077,7 @@ Step 5: XGBoost + GRU hybrid
 No retraining. For each target:
   1. rebuilds the identity-blended XGBoost prediction (same method and weights as step 3)
   2. chooses a weight w for the GRU on a 0.05 grid:  final = (1 - w) * XGB_blend + w * GRU
-Weights are chosen on out-of-fold predictions; nested CV (choose on 4 folds, score the
-5th) gives an honest estimate. A target keeps w = 0 unless adding the GRU helps.
+Weights are chosen on out-of-fold predictions. A target keeps w = 0 unless adding the GRU helps.
 """
 
 def choose_weights(cands, y, fold):
@@ -1223,32 +1222,13 @@ if __name__ == "__main__":
                      help="GRU: sequence branch only, no dense static branch")
     args = ap.parse_args()
 
-    # Step 1: data pipeline + baselines -> submission_ratio_baseline.csv
+    
     run_step1()
-
-    # Step 2: XGBoost magnitude + sign models -> submission_xgb.csv
     run_step2(args)
-
-    # Step 3: identity-based blending of the XGBoost predictions -> submission_xgb_blend.csv
-    # (needs the FINAL submission_xgb.csv from step 2, which --quick mode does not produce)
-    if args.quick:
-        print("\nQuick mode: skipping step 3 (blend), which needs the full submission_xgb.csv.")
-    else:
-        run_step3()
-
-    # Step 4: PyTorch GRU deep-learning model -> submission_gru.csv
+    run_step3()
     run_step4(args)
+    run_step5(args)
 
-    # Step 5: XGBoost/GRU hybrid blend -> submission_hybrid.csv
-    # (needs the FINAL submission_xgb.csv / submission_gru.csv, which --quick mode does not produce)
-    if args.quick:
-        print("Quick mode: skipping step 5 (hybrid), which needs the full submission files.")
-    else:
-        run_step5(args)
-
-    # Every step above finished without raising, so the checkpoints and other intermediate
-    # files under _pipeline_cache/ are no longer needed - remove them so the only files this
-    # script leaves behind are the submission_*.csv deliverables.
     shutil.rmtree(CACHE_DIR, ignore_errors=True)
     made = [f for f in ["submission_ratio_baseline.csv", "submission_xgb.csv",
                          "submission_xgb_blend.csv", "submission_gru.csv", "submission_hybrid.csv"]

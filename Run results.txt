@@ -1,4 +1,3 @@
-PS C:\Users\User\Downloads\Project> python DLProject.py --holdout
 Loading:
   train.csv: 100,000 rows, 0 empty rows dropped
   test_individual.csv: 50,000 rows, 0 empty rows dropped
