@@ -1,0 +1,487 @@
+PS C:\Users\User\Downloads\Project> python DLProject.py --holdout
+Loading:
+  train.csv: 100,000 rows, 0 empty rows dropped
+  test_individual.csv: 50,000 rows, 0 empty rows dropped
+Train: (100000, 214), Test: (50000, 205), predictors: 204
+
+Fold sizes (-1 = holdout): {-1: 10000, 0: 18000, 1: 18000, 2: 18000, 3: 18000, 4: 18000}
+Largest repeated-record group: 128 rows, fold(s) [0]
+
+CV sMAPE (%) on the 90% CV portion:
+                              Naive mean  Q1 carry  Q1 x ratio
+Q0_TOTAL_ASSETS                   136.73     37.43       10.38
+Q0_TOTAL_LIABILITIES              140.65     10.20       10.15
+Q0_TOTAL_STOCKHOLDERS_EQUITY      134.19     75.63       31.13
+Q0_GROSS_PROFIT                   138.06     30.36       30.14
+Q0_COST_OF_REVENUES               144.04     18.00       17.95
+Q0_REVENUES                       140.66     17.98       17.97
+Q0_OPERATING_INCOME               128.73    105.94      100.25
+Q0_OPERATING_EXPENSES             127.27     31.13       11.30
+Q0_EBITDA                         131.56    100.16       91.37
+AVERAGE                           135.76     47.42       35.63
+  Q1 carry: 65.1% reduction vs naive mean
+  Q1 x ratio: 73.8% reduction vs naive mean
+  Q1 x ratio per-fold average sMAPE: [35.78 35.55 35.56 35.57 35.67] (sd 0.09)
+
+Wrote submission_ratio_baseline.csv (50,000 rows)
+Wrote folds.csv, oof_ratio_baseline.csv (both under the intermediate cache)
+XGBoost 3.1.2, CPU cores available: 12
+Loading:
+  train.csv: 100,000 rows, 0 empty rows dropped
+  test_individual.csv: 50,000 rows, 0 empty rows dropped
+Train: (100000, 214), Test: (50000, 205), predictors: 204
+Features: 349 (145 engineered)
+Checkpoints: _pipeline_cache\checkpoints_xgb_full_5folds/
+    fold 0:    69s  (rounds: magnitude 1996, sign 303)
+    fold 1:    70s  (rounds: magnitude 1991, sign 442)
+    fold 2:    68s  (rounds: magnitude 1999, sign 318)
+    fold 3:    72s  (rounds: magnitude 2000, sign 467)
+    fold 4:    64s  (rounds: magnitude 2000, sign 168)
+Q0_TOTAL_ASSETS                sMAPE   1.06   sign acc 100.0% (majority  98.3%)     345s
+    fold 0:    53s  (rounds: magnitude 970, sign 400)
+    fold 1:    54s  (rounds: magnitude 1037, sign 64)
+    fold 2:    53s  (rounds: magnitude 997, sign 94)
+    fold 3:    51s  (rounds: magnitude 916, sign 130)
+    fold 4:    52s  (rounds: magnitude 964, sign 185)
+Q0_TOTAL_LIABILITIES           sMAPE   2.95   sign acc 100.0% (majority  98.3%)     265s
+    fold 0:    89s  (rounds: magnitude 2000, sign 214)
+    fold 1:    86s  (rounds: magnitude 1984, sign 153)
+    fold 2:    68s  (rounds: magnitude 1663, sign 91)
+    fold 3:    92s  (rounds: magnitude 1995, sign 284)
+    fold 4:    86s  (rounds: magnitude 1999, sign 123)
+Q0_TOTAL_STOCKHOLDERS_EQUITY   sMAPE   4.46   sign acc  99.8% (majority  97.4%)     424s
+    fold 0:    44s  (rounds: magnitude 576, sign 181)
+    fold 1:    36s  (rounds: magnitude 509, sign 80)
+    fold 2:    40s  (rounds: magnitude 536, sign 130)
+    fold 3:    43s  (rounds: magnitude 652, sign 100)
+    fold 4:    43s  (rounds: magnitude 618, sign 155)
+Q0_GROSS_PROFIT                sMAPE  16.75   sign acc  99.3% (majority  96.8%)     209s
+    fold 0:    84s  (rounds: magnitude 1453, sign 371)
+    fold 1:    89s  (rounds: magnitude 1752, sign 126)
+    fold 2:    76s  (rounds: magnitude 1350, sign 308)
+    fold 3:    85s  (rounds: magnitude 1460, sign 418)
+    fold 4:    69s  (rounds: magnitude 1404, sign 259)
+Q0_COST_OF_REVENUES            sMAPE   5.88   sign acc  99.9% (majority  99.3%)     405s
+    fold 0:    41s  (rounds: magnitude 904, sign 0)
+    fold 1:    50s  (rounds: magnitude 867, sign 0)
+    fold 2:    42s  (rounds: magnitude 917, sign 0)
+    fold 3:    52s  (rounds: magnitude 1171, sign 0)
+    fold 4:    53s  (rounds: magnitude 976, sign 0)
+Q0_REVENUES                    sMAPE   5.18   sign acc 100.0% (majority 100.0%)     239s
+    fold 0:    74s  (rounds: magnitude 901, sign 119)
+    fold 1:    44s  (rounds: magnitude 451, sign 114)
+    fold 2:    51s  (rounds: magnitude 664, sign 127)
+    fold 3:    58s  (rounds: magnitude 792, sign 159)
+    fold 4:    64s  (rounds: magnitude 717, sign 125)
+Q0_OPERATING_INCOME            sMAPE  40.24   sign acc  93.1% (majority  79.5%)     294s
+    fold 0:   127s  (rounds: magnitude 2000, sign 0)
+    fold 1:   129s  (rounds: magnitude 1999, sign 0)
+    fold 2:   118s  (rounds: magnitude 2000, sign 0)
+    fold 3:   119s  (rounds: magnitude 2000, sign 0)
+    fold 4:   108s  (rounds: magnitude 2000, sign 0)
+Q0_OPERATING_EXPENSES          sMAPE   1.80   sign acc 100.0% (majority 100.0%)     604s
+    fold 0:    47s  (rounds: magnitude 617, sign 121)
+    fold 1:    55s  (rounds: magnitude 749, sign 149)
+    fold 2:    64s  (rounds: magnitude 889, sign 150)
+    fold 3:    54s  (rounds: magnitude 743, sign 137)
+    fold 4:    51s  (rounds: magnitude 714, sign 118)
+Q0_EBITDA                      sMAPE  38.80   sign acc  93.4% (majority  77.9%)     273s
+
+Average CV sMAPE: 13.01   (ratio baseline was ~35.6, naive mean ~135.7)
+Reduction vs naive mean (135.74): 90.4%
+
+Top 15 features by average importance rank: recommendationKey, Q5_GROSS_PROFIT, fe_Q1_rev_minus_cogs, Q2_GROSS_PROFIT, Q1_TOTAL_LIABILITIES_AND_EQUITY, Q1_TOTAL_ASSETS, fe_slog_Q1_TOTAL_CURRENT_LIABILITIES, totalDebt, Q1_GROSS_PROFIT, fe_slog_Q1_GROSS_PROFIT, Q1_TOTAL_CURRENT_LIABILITIES, Q1_TOTAL_STOCKHOLDERS_EQUITY, recommendationMean, Q5_TOTAL_STOCKHOLDERS_EQUITY, Q7_fiscal_year_end
+
+HOLDOUT sMAPE: {'TOTAL_ASSETS': np.float64(0.99), 'TOTAL_LIABILITIES': np.float64(2.88), 'TOTAL_STOCKHOLDERS_EQUITY': np.float64(4.28), 'GROSS_PROFIT': np.float64(15.73), 'COST_OF_REVENUES': np.float64(5.77), 'REVENUES': np.float64(5.02), 'OPERATING_INCOME': np.float64(39.38), 'OPERATING_EXPENSES': np.float64(1.68), 'EBITDA': np.float64(37.11)}
+HOLDOUT average: 12.54  (CV average was 13.01)
+
+Fitting final models on all training rows...
+  Q0_TOTAL_ASSETS done (105s)
+  Q0_TOTAL_LIABILITIES done (65s)
+  Q0_TOTAL_STOCKHOLDERS_EQUITY done (118s)
+  Q0_GROSS_PROFIT done (47s)
+  Q0_COST_OF_REVENUES done (131s)
+  Q0_REVENUES done (82s)
+  Q0_OPERATING_INCOME done (70s)
+  Q0_OPERATING_EXPENSES done (169s)
+  Q0_EBITDA done (73s)
+Wrote submission_xgb.csv (50,000 rows)
+Loading:
+  train.csv: 100,000 rows, 0 empty rows dropped
+  test_individual.csv: 50,000 rows, 0 empty rows dropped
+Train: (100000, 214), Test: (50000, 205), predictors: 204
+
+Out-of-fold sMAPE (blend scored with nested CV):
+                              direct_sMAPE  blend_sMAPE_nested                                    weights
+target                                                                                                   
+Q0_TOTAL_ASSETS                       1.06                1.05                      direct 0.90, L+E 0.10
+Q0_TOTAL_LIABILITIES                  2.95                2.94                      direct 0.95, A-E 0.05
+Q0_TOTAL_STOCKHOLDERS_EQUITY          4.46                3.25                      direct 0.15, A-L 0.85
+Q0_GROSS_PROFIT                      16.75               16.49   direct 0.75, Rev-COGS 0.20, OI+OpEx 0.05
+Q0_COST_OF_REVENUES                   5.88                5.84                   direct 0.90, Rev-GP 0.10
+Q0_REVENUES                           5.18                4.97                  direct 0.60, GP+COGS 0.40
+Q0_OPERATING_INCOME                  40.24               38.52  direct 0.45, EBITDA-DA 0.05, GP-OpEx 0.50
+Q0_OPERATING_EXPENSES                 1.80                1.80                    direct 1.00, GP-OI 0.00
+Q0_EBITDA                            38.80               37.06   direct 0.40, OI+DA 0.10, GP-OpEx+DA 0.50
+
+Average: direct 13.01 -> blended 12.44
+
+Share of test rows whose sign changed vs submission_xgb.csv: {'TOTAL_ASSETS': '0.00%', 'TOTAL_LIABILITIES': '0.00%', 'TOTAL_STOCKHOLDERS_EQUITY': '0.13%', 'GROSS_PROFIT': '0.02%', 'COST_OF_REVENUES': '0.00%', 'REVENUES': '0.00%', 'OPERATING_INCOME': '0.15%', 'OPERATING_EXPENSES': '0.00%', 'EBITDA': '0.22%'}
+Wrote submission_xgb_blend.csv (50,000 rows)
+PyTorch 2.10.0+cpu, device: cpu, static branch: True
+Loading:
+  train.csv: 100,000 rows, 0 empty rows dropped
+  test_individual.csv: 50,000 rows, 0 empty rows dropped
+Train: (100000, 214), Test: (50000, 205), predictors: 204
+Checkpoints: _pipeline_cache\checkpoints_gru_full/
+fold 0: training on 72,000 rows
+    epoch  1  loss 0.2818  ES sMAPE  24.58 *    18s
+    epoch  2  loss 0.2098  ES sMAPE  22.29 *    16s
+    epoch  3  loss 0.1877  ES sMAPE  20.70 *    17s
+    epoch  4  loss 0.1730  ES sMAPE  19.33 *    21s
+    epoch  5  loss 0.1611  ES sMAPE  18.82 *    21s
+    epoch  6  loss 0.1527  ES sMAPE  18.08 *    20s
+    epoch  7  loss 0.1469  ES sMAPE  17.43 *    17s
+    epoch  8  loss 0.1430  ES sMAPE  17.00 *    19s
+    epoch  9  loss 0.1386  ES sMAPE  17.13    17s
+    epoch 10  loss 0.1355  ES sMAPE  16.52 *    20s
+    epoch 11  loss 0.1335  ES sMAPE  16.24 *    19s
+    epoch 12  loss 0.1298  ES sMAPE  16.18 *    20s
+    epoch 13  loss 0.1280  ES sMAPE  15.99 *    20s
+    epoch 14  loss 0.1257  ES sMAPE  15.73 *    20s
+    epoch 15  loss 0.1241  ES sMAPE  15.76    21s
+    epoch 16  loss 0.1223  ES sMAPE  15.44 *    18s
+    epoch 17  loss 0.1206  ES sMAPE  15.27 *    19s
+    epoch 18  loss 0.1194  ES sMAPE  15.34    20s
+    epoch 19  loss 0.1180  ES sMAPE  15.14 *    18s
+    epoch 20  loss 0.1170  ES sMAPE  15.18    18s
+    epoch 21  loss 0.1153  ES sMAPE  14.88 *    20s
+    epoch 22  loss 0.1143  ES sMAPE  14.99    22s
+    epoch 23  loss 0.1139  ES sMAPE  14.73 *    17s
+    epoch 24  loss 0.1120  ES sMAPE  14.69 *    18s
+    epoch 25  loss 0.1111  ES sMAPE  14.83    17s
+    epoch 26  loss 0.1106  ES sMAPE  14.50 *    17s
+    epoch 27  loss 0.1097  ES sMAPE  14.43 *    17s
+    epoch 28  loss 0.1084  ES sMAPE  14.31 *    17s
+    epoch 29  loss 0.1081  ES sMAPE  14.32    17s
+    epoch 30  loss 0.1073  ES sMAPE  14.24 *    17s
+    epoch 31  loss 0.1068  ES sMAPE  14.25    17s
+    epoch 32  loss 0.1064  ES sMAPE  14.14 *    17s
+    epoch 33  loss 0.1056  ES sMAPE  14.14 *    17s
+    epoch 34  loss 0.1054  ES sMAPE  14.09 *    17s
+    epoch 35  loss 0.1051  ES sMAPE  14.06 *    17s
+    epoch 36  loss 0.1048  ES sMAPE  14.06    17s
+    epoch 37  loss 0.1042  ES sMAPE  14.03 *    17s
+    epoch 38  loss 0.1043  ES sMAPE  14.02 *    18s
+    epoch 39  loss 0.1039  ES sMAPE  14.04    19s
+    epoch 40  loss 0.1040  ES sMAPE  14.00 *    21s
+fold 0: sMAPE 14.01, best epoch 40, 740s
+fold 1: training on 72,000 rows
+    epoch  1  loss 0.2804  ES sMAPE  24.85 *    18s
+    epoch  2  loss 0.2106  ES sMAPE  23.17 *    17s
+    epoch  3  loss 0.1866  ES sMAPE  20.45 *    17s
+    epoch  4  loss 0.1704  ES sMAPE  19.54 *    16s
+    epoch  5  loss 0.1600  ES sMAPE  18.67 *    17s
+    epoch  6  loss 0.1512  ES sMAPE  18.02 *    16s
+    epoch  7  loss 0.1458  ES sMAPE  17.74 *    17s
+    epoch  8  loss 0.1414  ES sMAPE  17.32 *    16s
+    epoch  9  loss 0.1380  ES sMAPE  16.77 *    17s
+    epoch 10  loss 0.1339  ES sMAPE  16.80    17s
+    epoch 11  loss 0.1311  ES sMAPE  16.30 *    16s
+    epoch 12  loss 0.1294  ES sMAPE  16.23 *    16s
+    epoch 13  loss 0.1271  ES sMAPE  16.12 *    17s
+    epoch 14  loss 0.1244  ES sMAPE  15.78 *    20s
+    epoch 15  loss 0.1222  ES sMAPE  15.51 *    19s
+    epoch 16  loss 0.1208  ES sMAPE  15.45 *    18s
+    epoch 17  loss 0.1185  ES sMAPE  15.17 *    20s
+    epoch 18  loss 0.1176  ES sMAPE  15.13 *    18s
+    epoch 19  loss 0.1163  ES sMAPE  15.01 *    20s
+    epoch 20  loss 0.1148  ES sMAPE  14.98 *    20s
+    epoch 21  loss 0.1135  ES sMAPE  14.87 *    17s
+    epoch 22  loss 0.1125  ES sMAPE  14.73 *    18s
+    epoch 23  loss 0.1117  ES sMAPE  14.68 *    19s
+    epoch 24  loss 0.1106  ES sMAPE  14.85    20s
+    epoch 25  loss 0.1099  ES sMAPE  14.68    20s
+    epoch 26  loss 0.1089  ES sMAPE  14.45 *    20s
+    epoch 27  loss 0.1082  ES sMAPE  14.42 *    20s
+    epoch 28  loss 0.1076  ES sMAPE  14.40 *    20s
+    epoch 29  loss 0.1070  ES sMAPE  14.29 *    19s
+    epoch 30  loss 0.1060  ES sMAPE  14.20 *    18s
+    epoch 31  loss 0.1056  ES sMAPE  14.21    18s
+    epoch 32  loss 0.1051  ES sMAPE  14.16 *    21s
+    epoch 33  loss 0.1047  ES sMAPE  14.19    18s
+    epoch 34  loss 0.1041  ES sMAPE  14.16    17s
+    epoch 35  loss 0.1038  ES sMAPE  14.07 *    18s
+    epoch 36  loss 0.1033  ES sMAPE  14.11    18s
+    epoch 37  loss 0.1031  ES sMAPE  14.07 *    19s
+    epoch 38  loss 0.1028  ES sMAPE  14.04 *    20s
+    epoch 39  loss 0.1026  ES sMAPE  14.05    19s
+    epoch 40  loss 0.1029  ES sMAPE  14.00 *    20s
+fold 1: sMAPE 13.90, best epoch 40, 731s
+fold 2: training on 72,000 rows
+    epoch  1  loss 0.2778  ES sMAPE  24.75 *    20s
+    epoch  2  loss 0.2082  ES sMAPE  22.47 *    20s
+    epoch  3  loss 0.1870  ES sMAPE  20.81 *    20s
+    epoch  4  loss 0.1711  ES sMAPE  19.56 *    19s
+    epoch  5  loss 0.1601  ES sMAPE  18.34 *    19s
+    epoch  6  loss 0.1516  ES sMAPE  18.13 *    20s
+    epoch  7  loss 0.1455  ES sMAPE  17.36 *    20s
+    epoch  8  loss 0.1409  ES sMAPE  16.93 *    21s
+    epoch  9  loss 0.1367  ES sMAPE  16.94    20s
+    epoch 10  loss 0.1341  ES sMAPE  16.28 *    23s
+    epoch 11  loss 0.1308  ES sMAPE  16.27 *    24s
+    epoch 12  loss 0.1284  ES sMAPE  16.04 *    20s
+    epoch 13  loss 0.1267  ES sMAPE  15.78 *    22s
+    epoch 14  loss 0.1244  ES sMAPE  15.67 *    20s
+    epoch 15  loss 0.1217  ES sMAPE  15.72    17s
+    epoch 16  loss 0.1206  ES sMAPE  15.43 *    17s
+    epoch 17  loss 0.1186  ES sMAPE  15.02 *    17s
+    epoch 18  loss 0.1171  ES sMAPE  15.16    17s
+    epoch 19  loss 0.1160  ES sMAPE  14.99 *    17s
+    epoch 20  loss 0.1143  ES sMAPE  14.83 *    18s
+    epoch 21  loss 0.1135  ES sMAPE  14.67 *    18s
+    epoch 22  loss 0.1121  ES sMAPE  14.66 *    18s
+    epoch 23  loss 0.1111  ES sMAPE  14.54 *    20s
+    epoch 24  loss 0.1102  ES sMAPE  14.61    19s
+    epoch 25  loss 0.1096  ES sMAPE  14.39 *    19s
+    epoch 26  loss 0.1087  ES sMAPE  14.48    19s
+    epoch 27  loss 0.1081  ES sMAPE  14.28 *    20s
+    epoch 28  loss 0.1068  ES sMAPE  14.20 *    20s
+    epoch 29  loss 0.1063  ES sMAPE  14.10 *    20s
+    epoch 30  loss 0.1056  ES sMAPE  14.22    16s
+    epoch 31  loss 0.1054  ES sMAPE  14.02 *    16s
+    epoch 32  loss 0.1044  ES sMAPE  14.04    16s
+    epoch 33  loss 0.1045  ES sMAPE  14.02 *    16s
+    epoch 34  loss 0.1039  ES sMAPE  14.02    16s
+    epoch 35  loss 0.1037  ES sMAPE  13.96 *    16s
+    epoch 36  loss 0.1031  ES sMAPE  13.92 *    17s
+    epoch 37  loss 0.1026  ES sMAPE  13.96    22s
+    epoch 38  loss 0.1025  ES sMAPE  13.88 *    20s
+    epoch 39  loss 0.1026  ES sMAPE  13.88    19s
+    epoch 40  loss 0.1025  ES sMAPE  13.87 *    19s
+fold 2: sMAPE 14.10, best epoch 40, 759s
+fold 3: training on 72,000 rows
+    epoch  1  loss 0.2804  ES sMAPE  24.41 *    20s
+    epoch  2  loss 0.2086  ES sMAPE  22.17 *    20s
+    epoch  3  loss 0.1871  ES sMAPE  20.40 *    20s
+    epoch  4  loss 0.1717  ES sMAPE  19.39 *    19s
+    epoch  5  loss 0.1604  ES sMAPE  18.76 *    19s
+    epoch  6  loss 0.1520  ES sMAPE  17.56 *    20s
+    epoch  7  loss 0.1466  ES sMAPE  17.49 *    19s
+    epoch  8  loss 0.1423  ES sMAPE  16.78 *    20s
+    epoch  9  loss 0.1374  ES sMAPE  16.60 *    20s
+    epoch 10  loss 0.1343  ES sMAPE  16.46 *    21s
+    epoch 11  loss 0.1309  ES sMAPE  16.16 *    20s
+    epoch 12  loss 0.1294  ES sMAPE  15.88 *    21s
+    epoch 13  loss 0.1268  ES sMAPE  16.22    21s
+    epoch 14  loss 0.1251  ES sMAPE  15.62 *    20s
+    epoch 15  loss 0.1230  ES sMAPE  15.43 *    21s
+    epoch 16  loss 0.1213  ES sMAPE  15.45    19s
+    epoch 17  loss 0.1195  ES sMAPE  15.17 *    19s
+    epoch 18  loss 0.1181  ES sMAPE  15.20    16s
+    epoch 19  loss 0.1166  ES sMAPE  14.88 *    16s
+    epoch 20  loss 0.1155  ES sMAPE  14.77 *    16s
+    epoch 21  loss 0.1143  ES sMAPE  14.62 *    16s
+    epoch 22  loss 0.1135  ES sMAPE  14.57 *    19s
+    epoch 23  loss 0.1124  ES sMAPE  14.42 *    19s
+    epoch 24  loss 0.1113  ES sMAPE  14.55    20s
+    epoch 25  loss 0.1104  ES sMAPE  14.46    21s
+    epoch 26  loss 0.1098  ES sMAPE  14.48    20s
+    epoch 27  loss 0.1086  ES sMAPE  14.21 *    20s
+    epoch 28  loss 0.1078  ES sMAPE  14.19 *    20s
+    epoch 29  loss 0.1072  ES sMAPE  14.26    17s
+    epoch 30  loss 0.1068  ES sMAPE  14.14 *    16s
+    epoch 31  loss 0.1064  ES sMAPE  14.00 *    16s
+    epoch 32  loss 0.1056  ES sMAPE  14.01    16s
+    epoch 33  loss 0.1050  ES sMAPE  14.01    18s
+    epoch 34  loss 0.1043  ES sMAPE  13.94 *    21s
+    epoch 35  loss 0.1043  ES sMAPE  13.89 *    20s
+    epoch 36  loss 0.1041  ES sMAPE  13.89    20s
+    epoch 37  loss 0.1036  ES sMAPE  13.89    20s
+    epoch 38  loss 0.1036  ES sMAPE  13.88 *    16s
+    epoch 39  loss 0.1035  ES sMAPE  13.86 *    16s
+    epoch 40  loss 0.1031  ES sMAPE  13.88    16s
+fold 3: sMAPE 14.07, best epoch 39, 755s
+fold 4: training on 72,000 rows
+    epoch  1  loss 0.2808  ES sMAPE  24.53 *    17s
+    epoch  2  loss 0.2087  ES sMAPE  21.98 *    20s
+    epoch  3  loss 0.1842  ES sMAPE  20.39 *    20s
+    epoch  4  loss 0.1692  ES sMAPE  19.24 *    16s
+    epoch  5  loss 0.1585  ES sMAPE  18.82 *    16s
+    epoch  6  loss 0.1511  ES sMAPE  17.46 *    16s
+    epoch  7  loss 0.1444  ES sMAPE  17.25 *    16s
+    epoch  8  loss 0.1401  ES sMAPE  17.11 *    17s
+    epoch  9  loss 0.1365  ES sMAPE  16.51 *    16s
+    epoch 10  loss 0.1327  ES sMAPE  16.22 *    16s
+    epoch 11  loss 0.1298  ES sMAPE  16.05 *    16s
+    epoch 12  loss 0.1273  ES sMAPE  15.90 *    16s
+    epoch 13  loss 0.1255  ES sMAPE  15.72 *    16s
+    epoch 14  loss 0.1236  ES sMAPE  15.45 *    19s
+    epoch 15  loss 0.1217  ES sMAPE  15.40 *    16s
+    epoch 16  loss 0.1200  ES sMAPE  15.06 *    32s
+    epoch 17  loss 0.1174  ES sMAPE  14.86 *    21s
+    epoch 18  loss 0.1161  ES sMAPE  14.92    21s
+    epoch 19  loss 0.1148  ES sMAPE  14.86    20s
+    epoch 20  loss 0.1142  ES sMAPE  14.76 *    20s
+    epoch 21  loss 0.1127  ES sMAPE  14.58 *    20s
+    epoch 22  loss 0.1118  ES sMAPE  14.44 *    21s
+    epoch 23  loss 0.1105  ES sMAPE  14.41 *    21s
+    epoch 24  loss 0.1097  ES sMAPE  14.36 *    26s
+    epoch 25  loss 0.1090  ES sMAPE  14.38    20s
+    epoch 26  loss 0.1080  ES sMAPE  14.19 *    21s
+    epoch 27  loss 0.1074  ES sMAPE  14.18 *    23s
+    epoch 28  loss 0.1066  ES sMAPE  14.13 *    21s
+    epoch 29  loss 0.1057  ES sMAPE  14.07 *    20s
+    epoch 30  loss 0.1053  ES sMAPE  14.17    20s
+    epoch 31  loss 0.1046  ES sMAPE  13.91 *    20s
+    epoch 32  loss 0.1041  ES sMAPE  13.94    20s
+    epoch 33  loss 0.1035  ES sMAPE  13.89 *    19s
+    epoch 34  loss 0.1033  ES sMAPE  13.86 *    20s
+    epoch 35  loss 0.1027  ES sMAPE  13.82 *    19s
+    epoch 36  loss 0.1025  ES sMAPE  13.80 *    20s
+    epoch 37  loss 0.1024  ES sMAPE  13.81    19s
+    epoch 38  loss 0.1021  ES sMAPE  13.76 *    20s
+    epoch 39  loss 0.1021  ES sMAPE  13.74 *    22s
+    epoch 40  loss 0.1016  ES sMAPE  13.73 *    23s
+fold 4: sMAPE 14.05, best epoch 40, 788s
+Q0_TOTAL_ASSETS                sMAPE   2.35   sign acc 100.0% (majority  98.3%)
+Q0_TOTAL_LIABILITIES           sMAPE   3.84   sign acc 100.0% (majority  98.3%)
+Q0_TOTAL_STOCKHOLDERS_EQUITY   sMAPE   8.24   sign acc  99.8% (majority  97.4%)
+Q0_GROSS_PROFIT                sMAPE  17.27   sign acc  99.2% (majority  96.8%)
+Q0_COST_OF_REVENUES            sMAPE   7.16   sign acc  99.9% (majority  99.3%)
+Q0_REVENUES                    sMAPE   5.85   sign acc 100.0% (majority 100.0%)
+Q0_OPERATING_INCOME            sMAPE  39.79   sign acc  93.1% (majority  79.5%)
+Q0_OPERATING_EXPENSES          sMAPE   3.83   sign acc 100.0% (majority 100.0%)
+Q0_EBITDA                      sMAPE  37.90   sign acc  93.3% (majority  77.9%)
+
+Average CV sMAPE (GRU): 14.03   (XGBoost was 13.01; naive mean ~135.7)
+Wrote cv_results_gru.csv, oof_gru.csv
+
+Holdout: training on CV rows for 40 epochs
+    epoch  1/40  loss 0.2607    34s
+    epoch  2/40  loss 0.1958    29s
+    epoch  3/40  loss 0.1715    28s
+    epoch  4/40  loss 0.1569    27s
+    epoch  5/40  loss 0.1477    29s
+    epoch  6/40  loss 0.1410    27s
+    epoch  7/40  loss 0.1363    27s
+    epoch  8/40  loss 0.1318    26s
+    epoch  9/40  loss 0.1290    28s
+    epoch 10/40  loss 0.1258    27s
+    epoch 11/40  loss 0.1235    27s
+    epoch 12/40  loss 0.1213    27s
+    epoch 13/40  loss 0.1191    27s
+    epoch 14/40  loss 0.1182    27s
+    epoch 15/40  loss 0.1160    27s
+    epoch 16/40  loss 0.1146    28s
+    epoch 17/40  loss 0.1134    27s
+    epoch 18/40  loss 0.1121    23s
+    epoch 19/40  loss 0.1110    22s
+    epoch 20/40  loss 0.1103    24s
+    epoch 21/40  loss 0.1090    30s
+    epoch 22/40  loss 0.1083    27s
+    epoch 23/40  loss 0.1073    27s
+    epoch 24/40  loss 0.1060    31s
+    epoch 25/40  loss 0.1058    32s
+    epoch 26/40  loss 0.1047    27s
+    epoch 27/40  loss 0.1041    27s
+    epoch 28/40  loss 0.1035    27s
+    epoch 29/40  loss 0.1030    27s
+    epoch 30/40  loss 0.1023    27s
+    epoch 31/40  loss 0.1017    27s
+    epoch 32/40  loss 0.1015    27s
+    epoch 33/40  loss 0.1007    28s
+    epoch 34/40  loss 0.1004    27s
+    epoch 35/40  loss 0.1001    28s
+    epoch 36/40  loss 0.0999    27s
+    epoch 37/40  loss 0.0996    27s
+    epoch 38/40  loss 0.0994    27s
+    epoch 39/40  loss 0.0994    26s
+    epoch 40/40  loss 0.0991    26s
+HOLDOUT sMAPE: {'TOTAL_ASSETS': np.float64(2.17), 'TOTAL_LIABILITIES': np.float64(3.6), 'TOTAL_STOCKHOLDERS_EQUITY': np.float64(7.67), 'GROSS_PROFIT': np.float64(16.21), 'COST_OF_REVENUES': np.float64(6.67), 'REVENUES': np.float64(5.58), 'OPERATING_INCOME': np.float64(38.24), 'OPERATING_EXPENSES': np.float64(3.57), 'EBITDA': np.float64(36.24)}
+HOLDOUT average: 13.33  (CV average was 14.03)
+
+Final model: training on all 100,000 rows for 44 epochs
+    epoch  1/44  loss 0.2549    30s
+    epoch  2/44  loss 0.1907    29s
+    epoch  3/44  loss 0.1668    21s
+    epoch  4/44  loss 0.1529    21s
+    epoch  5/44  loss 0.1437    21s
+    epoch  6/44  loss 0.1377    21s
+    epoch  7/44  loss 0.1329    21s
+    epoch  8/44  loss 0.1293    21s
+    epoch  9/44  loss 0.1258    22s
+    epoch 10/44  loss 0.1235    21s
+    epoch 11/44  loss 0.1213    22s
+    epoch 12/44  loss 0.1189    21s
+    epoch 13/44  loss 0.1175    21s
+    epoch 14/44  loss 0.1155    21s
+    epoch 15/44  loss 0.1145    21s
+    epoch 16/44  loss 0.1129    22s
+    epoch 17/44  loss 0.1119    22s
+    epoch 18/44  loss 0.1106    22s
+    epoch 19/44  loss 0.1094    21s
+    epoch 20/44  loss 0.1085    21s
+    epoch 21/44  loss 0.1075    21s
+    epoch 22/44  loss 0.1067    22s
+    epoch 23/44  loss 0.1059    22s
+    epoch 24/44  loss 0.1050    19s
+    epoch 25/44  loss 0.1042    18s
+    epoch 26/44  loss 0.1035    18s
+    epoch 27/44  loss 0.1030    18s
+    epoch 28/44  loss 0.1023    18s
+    epoch 29/44  loss 0.1017    18s
+    epoch 30/44  loss 0.1013    18s
+    epoch 31/44  loss 0.1007    18s
+    epoch 32/44  loss 0.1000    18s
+    epoch 33/44  loss 0.0997    18s
+    epoch 34/44  loss 0.0993    18s
+    epoch 35/44  loss 0.0992    18s
+    epoch 36/44  loss 0.0988    19s
+    epoch 37/44  loss 0.0986    19s
+    epoch 38/44  loss 0.0984    18s
+    epoch 39/44  loss 0.0980    18s
+    epoch 40/44  loss 0.0980    18s
+    epoch 41/44  loss 0.0980    18s
+    epoch 42/44  loss 0.0981    18s
+    epoch 43/44  loss 0.0981    18s
+    epoch 44/44  loss 0.0981    18s
+Wrote submission_gru.csv (50,000 rows)
+Loading:
+  train.csv: 100,000 rows, 0 empty rows dropped
+  test_individual.csv: 50,000 rows, 0 empty rows dropped
+Train: (100000, 214), Test: (50000, 205), predictors: 204
+
+Out-of-fold sMAPE (hybrid scored with nested CV):
+                              xgb_direct  xgb_blend  gru_alone  hybrid_nested  gru_weight
+target                                                                                   
+Q0_TOTAL_ASSETS                    1.064      1.047      2.352          1.041        0.05
+Q0_TOTAL_LIABILITIES               2.951      2.943      3.836          2.929        0.10
+Q0_TOTAL_STOCKHOLDERS_EQUITY       4.462      3.246      8.243          3.246        0.00
+Q0_GROSS_PROFIT                   16.752     16.487     17.271         16.373        0.20
+Q0_COST_OF_REVENUES                5.879      5.835      7.157          5.740        0.20
+Q0_REVENUES                        5.177      4.966      5.848          4.891        0.20
+Q0_OPERATING_INCOME               40.238     38.522     39.793         38.403        0.15
+Q0_OPERATING_EXPENSES              1.805      1.805      3.833          1.791        0.05
+Q0_EBITDA                         38.795     37.057     37.900         36.940        0.15
+
+Average: XGB 13.014 -> XGB blend 12.434 -> hybrid 12.373   (GRU alone 14.026)
+
+TRUE HOLDOUT sMAPE (10,000 rows never used for OOF, CV, or weight selection):
+                              ratio_baseline  xgb_direct  xgb_blend  gru_alone  hybrid
+target                                                                                
+Q0_TOTAL_ASSETS                        8.827       0.992      0.973      2.170   0.965
+Q0_TOTAL_LIABILITIES                   8.699       2.878      2.871      3.600   2.856
+Q0_TOTAL_STOCKHOLDERS_EQUITY          29.821       4.283      3.126      7.668   3.126
+Q0_GROSS_PROFIT                       29.549      15.729     15.500     16.211  15.365
+Q0_COST_OF_REVENUES                   18.437       5.768      5.724      6.673   5.628
+Q0_REVENUES                           18.170       5.020      4.801      5.584   4.726
+Q0_OPERATING_INCOME                   99.703      39.383     37.359     38.243  37.227
+Q0_OPERATING_EXPENSES                 11.451       1.685      1.685      3.575   1.670
+Q0_EBITDA                             90.562      37.111     35.391     36.242  35.330
+
+Holdout average: ratio 35.024 -> XGB 12.539 -> XGB blend 11.937 -> hybrid 11.877   (GRU alone 13.330)
+XGB blend matches submission_xgb_blend.csv: True
+Wrote submission_hybrid.csv (50,000 rows)
+
+Done. Removed _pipeline_cache/. Submission files present: submission_ratio_baseline.csv, submission_xgb.csv, submission_xgb_blend.csv, submission_gru.csv, submission_hybrid.csv
