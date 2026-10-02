@@ -57,7 +57,7 @@ What this does:
 
 # ------------------------------------------------------------------ config
 TRAIN_FILE = "train.csv"
-TEST_FILE = "test_individual.csv"
+TEST_FILE = "test_final.csv"
 SEED = 42
 N_FOLDS = 5
 HOLDOUT_FRAC = 0.10
